@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>JobMatch Hero — AI Resume Analyzer</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ================================= -->
+<!-- NAVBAR -->
+<!-- ================================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-mark">
+            ✦
+        </div>
+
+        <span>JobMatch Hero</span>
+
+    </div>
+
+
+    <div class="nav-right">
+
+        <span class="nav-status">
+            AI Resume Analysis
+        </span>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================================= -->
+<!-- HERO -->
+<!-- ================================= -->
+
+<section class="hero">
+
+    <div class="hero-glow"></div>
+
+
+    <div class="hero-content">
+
+        <div class="eyebrow">
+
+            ✦ AI-POWERED RESUME ANALYSIS
+
+        </div>
+
+
+        <h1>
+
+            No more guessing games,
+            <span>let AI fix your CV.</span>
+
+        </h1>
+
+
+        <p class="hero-subtitle">
+
+            Match your resume against any job description,
+            discover what's missing, and improve your chances
+            of getting noticed.
+
+        </p>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================= -->
+<!-- ANALYZER -->
+<!-- ================================= -->
+
+<main class="container">
+
+
+    <section class="analyzer-grid">
+
+
+        <!-- RESUME UPLOAD -->
+
+        <div class="card upload-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="step">
+                        01
+                    </span>
+
+                    <h2>
+                        Upload your CV
+                    </h2>
+
+                    <p>
+                        PDF format · Max 10MB
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <label
+                class="upload-area"
+                id="uploadArea"
+            >
+
+                <input
+                    type="file"
+                    id="resumeInput"
+                    accept=".pdf"
+                    hidden
+                >
+
+
+                <div class="upload-icon">
+                    ↑
+                </div>
+
+
+                <strong>
+                    Drop your resume here
+                </strong>
+
+
+                <span>
+                    or click to browse
+                </span>
+
+
+                <div
+                    id="fileName"
+                    class="file-name"
+                ></div>
+
+            </label>
+
+        </div>
+
+
+
+        <!-- JOB DESCRIPTION -->
+
+        <div class="card jd-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="step">
+                        02
+                    </span>
+
+                    <h2>
+                        Add the job description
+                    </h2>
+
+                    <p>
+                        Paste the role you're applying for
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <textarea
+                id="jobDescription"
+                placeholder="Paste the job description here..."
+            ></textarea>
+
+
+            <div class="textarea-footer">
+
+                <span>
+                    Keep it relevant to the role
+                </span>
+
+                <span id="charCount">
+                    0 characters
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================================= -->
+    <!-- ANALYZE BUTTON -->
+    <!-- ================================= -->
+
+    <div class="analyze-wrapper">
+
+        <button
+            id="analyzeButton"
+            class="analyze-button"
+        >
+
+            <span>
+                ✦ Analyze my resume
+            </span>
+
+            <span class="arrow">
+                →
+            </span>
+
+        </button>
+
+
+        <p class="privacy-note">
+
+            🔒 Your resume is processed securely and isn't stored.
+
+        </p>
+
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- LOADING -->
+    <!-- ================================= -->
+
+    <section
+        id="loading"
+        class="loading hidden"
+    >
+
+        <div class="loader"></div>
+
+        <h3>
+            Analyzing your resume...
+        </h3>
+
+        <p>
+            Comparing your experience with the job description.
+        </p>
+
+    </section>
+
+
+
+    <!-- ================================= -->
+    <!-- RESULTS -->
+    <!-- ================================= -->
+
+    <section
+        id="results"
+        class="results hidden"
+    >
+
+        <div class="results-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    ✦ ANALYSIS COMPLETE
+                </span>
+
+                <h2>
+                    Your match, decoded.
+                </h2>
+
+            </div>
+
+
+            <button
+                id="resetButton"
+                class="reset-button"
+            >
+                Analyze another resume
+            </button>
+
+        </div>
+
+
+
+        <div class="results-grid">
+
+
+            <!-- SCORE -->
+
+            <div class="result-card score-card">
+
+                <span class="result-label">
+                    ATS MATCH SCORE
+                </span>
+
+
+                <div class="score-circle">
+
+                    <div>
+
+                        <span
+                            id="score"
+                            class="score"
+                        >
+                            --
+                        </span>
+
+                        <span class="score-out-of">
+                            OUT OF 100
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <h3 id="scoreLabel">
+                    Your ATS score
+                </h3>
+
+
+                <p id="scoreSummary">
+                    Your analysis will appear here.
+                </p>
+
+            </div>
+
+
+
+            <!-- MATCHING -->
+
+            <div class="result-card matching-card">
+
+                <span class="result-label">
+                    ALREADY COMING THROUGH
+                </span>
+
+                <h3>
+                    Matching skills
+                </h3>
+
+
+                <ul
+                    id="matchingSkills"
+                    class="skill-list"
+                ></ul>
+
+            </div>
+
+
+
+            <!-- MISSING -->
+
+            <div class="result-card missing-card">
+
+                <span class="result-label">
+                    SIGNALS TO CONSIDER
+                </span>
+
+                <h3>
+                    Missing skills
+                </h3>
+
+
+                <ul
+                    id="missingSkills"
+                    class="skill-list"
+                ></ul>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================================= -->
+        <!-- SUGGESTIONS -->
+        <!-- ================================= -->
+
+        <div class="suggestions-card">
+
+            <div class="suggestions-heading">
+
+                <span class="result-label">
+                    NEXT MOVES
+                </span>
+
+                <h3>
+                    Improve your match
+                </h3>
+
+                <p>
+                    Content-focused suggestions based on the role.
+                </p>
+
+            </div>
+
+
+            <div
+                id="suggestions"
+                class="suggestions-list"
+            ></div>
+
+        </div>
+
+
+        <!-- RAW RESPONSE -->
+
+        <details class="raw-analysis">
+
+            <summary>
+                View full AI analysis
+            </summary>
+
+            <pre id="rawResult"></pre>
+
+        </details>
+
+
+    </section>
+
+
+</main>
+
+
+<footer>
+
+    <span>
+        JobMatch Hero
+    </span>
+
+    <span>
+        Built with Python · LangChain · Gemini
+    </span>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

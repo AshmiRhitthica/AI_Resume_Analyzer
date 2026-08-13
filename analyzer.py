@@ -117,7 +117,7 @@ ats_prompt = ChatPromptTemplate.from_messages([
 llm_model = ChatGoogleGenerativeAI(
 
     model="gemini-3.5-flash",
-    api_key=os.environ['Google Gemini API key']
+    api_key=os.environ['GOOGLE_GEMINI_API_KEY']
 )
 
 parser = StrOutputParser()
